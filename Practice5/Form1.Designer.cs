@@ -30,9 +30,9 @@ namespace Practice5
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -50,7 +50,6 @@ namespace Practice5
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.reloadButton = new System.Windows.Forms.ToolStripButton();
             this.commitButton = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem1 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem1 = new System.Windows.Forms.ToolStripLabel();
@@ -67,11 +66,16 @@ namespace Practice5
             this.commitButton1 = new System.Windows.Forms.ToolStripButton();
             this.saveButton1 = new System.Windows.Forms.ToolStripButton();
             this.loadButton1 = new System.Windows.Forms.ToolStripButton();
+            this.search = new System.Windows.Forms.ToolStripTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelX = new System.Windows.Forms.Panel();
+            this.panelY = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -85,19 +89,21 @@ namespace Practice5
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(12, 317);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(35, 314);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(456, 280);
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(433, 280);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
+            this.chart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseDown);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -204,16 +210,6 @@ namespace Practice5
             this.commitButton.Text = "Commit";
             this.commitButton.Click += new System.EventHandler(this.commitButton_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(545, 76);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(220, 220);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
-            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem1;
@@ -234,7 +230,8 @@ namespace Practice5
             this.reloadButton1,
             this.commitButton1,
             this.saveButton1,
-            this.loadButton1});
+            this.loadButton1,
+            this.search});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem1;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem1;
@@ -242,7 +239,7 @@ namespace Practice5
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem1;
-            this.bindingNavigator1.Size = new System.Drawing.Size(951, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(983, 25);
             this.bindingNavigator1.TabIndex = 5;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -372,11 +369,62 @@ namespace Practice5
             this.loadButton1.Text = "Load";
             this.loadButton1.Click += new System.EventHandler(this.loadButton1_Click);
             // 
+            // search
+            // 
+            this.search.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(100, 25);
+            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_KeyDown);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Выбрать таблицу";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(545, 76);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(220, 220);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            // 
+            // panelX
+            // 
+            this.panelX.BackColor = System.Drawing.Color.Transparent;
+            this.panelX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelX.ForeColor = System.Drawing.Color.Transparent;
+            this.panelX.Location = new System.Drawing.Point(68, 583);
+            this.panelX.Name = "panelX";
+            this.panelX.Size = new System.Drawing.Size(400, 30);
+            this.panelX.TabIndex = 7;
+            this.panelX.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelX_MouseDown);
+            // 
+            // panelY
+            // 
+            this.panelY.BackColor = System.Drawing.Color.Transparent;
+            this.panelY.ForeColor = System.Drawing.Color.Transparent;
+            this.panelY.Location = new System.Drawing.Point(12, 329);
+            this.panelY.Name = "panelY";
+            this.panelY.Size = new System.Drawing.Size(30, 230);
+            this.panelY.TabIndex = 8;
+            this.panelY.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelY_MouseDown);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 608);
+            this.ClientSize = new System.Drawing.Size(983, 662);
+            this.Controls.Add(this.panelY);
+            this.Controls.Add(this.panelX);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.chart1);
@@ -387,10 +435,10 @@ namespace Practice5
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,6 +479,10 @@ namespace Practice5
         private System.Windows.Forms.ToolStripButton commitButton1;
         private System.Windows.Forms.ToolStripButton saveButton1;
         private System.Windows.Forms.ToolStripButton loadButton1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripTextBox search;
+        private System.Windows.Forms.Panel panelX;
+        private System.Windows.Forms.Panel panelY;
     }
 }
 
